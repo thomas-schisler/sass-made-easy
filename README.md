@@ -14,5 +14,3 @@ You are good to go! It will watch all your files for changes automatically and l
 - Make sure you have [Node.js](https://nodejs.org/en/) installed, which will include npm.
 - Watch [the video where I put this together](https://youtu.be/wYWf2m_yzBQ) and explain how it works
 - Check out [Parcel's documentation](https://parceljs.org/getting_started.html)
-
-- Pull via VS Code
