@@ -1,0 +1,34 @@
+// *****************************
+// # define breakpoints 
+// *****************************
+$bp-sm: 600px;
+$bp-md: 800px;
+$bp-lg: 1000px;
+$bp-xl: 1200px;
+
+// # usage 
+// =============================
+
+// option a (mobile first is the preferred method)
+// .element {
+//   @include bp($bp-sm) {...}
+// }
+
+// option b
+// .element {
+//   @include bp($bp-md,$bp-xl) {...}
+// }
+
+// option a (mobile first is the preferred method)
+@mixin bp($bp) {
+  @media screen and (min-width: $bp) {
+    @content;
+  }
+}
+
+// option b (range uses min & max)
+@mixin bp-min-max($bp-min, $bp-max) {
+  @media screen and (min-width: $bp-min) and (max-width: $bp-max) {
+    @content;
+  }
+}

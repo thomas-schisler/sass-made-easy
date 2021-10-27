@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A11y - Infographic</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    img {
+      margin: 0 auto;
+      width: 100%;
+      min-width: 320px;
+      max-width: 1000px;
+      height: auto;
+    }
+
+    #timeline-text,
+    .screen-reader-only {
+      position: absolute;
+      top: -9999px;
+      left: -9999px
+    }
+  </style>
+</head>
+
+<body>
+  <h1><abbr title="Accessibility">A11y</abbr> - Infographic</h1>
+    <!-- https://a11y-101.com/development/infographics -->
+
+
+    <img src="https://www.spinxdigital.com/blog/wp-content/uploads/2019/05/Infographic-Example-1-1.jpg" alt="Business Timeline Infographic" aria-details="timeline-text" />
+
+    <dl id="timeline-text" class="screen-reader-only">
+      <dt>2014</dt>
+      <dd>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</dd>
+      <dt>2015</dt>
+      <dd>Aliquam non justo ut nulla vulputate euismod nec nec velit. Cras in neque nunc. Nunc in dictum nulla.</dd>
+      <dt>2016</dt>
+      <dd>Proin volutpat semper dapibus. Curabitur accumsan suscipit nibh, nec pretium tortor.</dd>
+      <dt>2017</dt>
+      <dd>Praesent semper ligula quam, vulputate sodales ligula fringilla a. Aenean scelerisque finibus diam, ut iaculis sapien consequat eu</dd>
+      <dt>2018</dt>
+      <dd>Suspendisse vulputate tellus sed augue interdum dictum.</dd>
+    </dl>
+
+    <footer>
+      <p><a href="index.html">Go Home</a></p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+.job-info { 
+  display: flex;
+  flex-flow: column nowrap;
+  @media only screen and (min-width: 50rem) {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+  form {
+    flex: 0 1 auto;
+    @media only screen and (min-width: 50rem) {
+      order: 1;
+      padding-right: 1rem;
+      flex: 1 0 auto;
+      // max-width: 70%;
+    }
+  }
+  aside {
+    flex: 0 1 auto;
+    @media only screen and (min-width: 50rem) {
+      order: 2;
+      padding-left: 1rem;
+      flex: 0 1 auto;
+      // max-width: 30%;
+    }
+  }
+}
+form {
+  .form-field  {
+    margin: var(--spacing) 0;
+    display: flex; 
+    flex-flow: column nowrap;
+    label {
+      flex: 0 1 auto;
+      color: var(--color-accent);
+    }
+    input, select {
+      flex: 0 1 auto;
+      &:focus, 
+      &:active {       
+        &:valid {
+          outline: 2px solid green; 
+        }
+        &:invalid {
+          outline: 2px solid red; 
+        } 
+      }     
+    }
+  }  
+}

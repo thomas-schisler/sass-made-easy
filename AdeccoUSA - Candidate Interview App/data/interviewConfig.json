@@ -1,0 +1,24 @@
+{
+  "jobs": [
+   {
+     "id": "US_EN_99_020730_1736670",
+     "address1": "1 Independent Drive",
+     "address2": "Suite 600",
+     "city": "Jacksonville",
+     "state": "FL",
+     "postal": 32202,
+     "availableStartTime": "9:00AM EST",
+     "availableEndTime": "4:00PM EST"
+   },
+   {
+     "id": "US_EN_99_020730_1736671",
+     "address1": "10135 Deerwood Parkway",
+     "address2": "Suite 300",
+     "city": "Jacksonville",
+     "state": "FL",
+     "postal": 32256,
+     "availableStartTime": "9:00AM EST",
+     "availableEndTime": "12:00PM EST"
+   }
+  ]
+}

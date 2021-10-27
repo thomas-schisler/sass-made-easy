@@ -1,0 +1,27 @@
+// *****************************
+// # normalize css
+// *****************************
+@import "normalize.css";
+
+
+// *****************************
+// # list reset
+// *****************************
+
+// # usage
+// =============================
+// nav {
+//   @include list-reset;
+// }
+
+@mixin list-reset {
+  &, ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      margin: 0; 
+      padding: 0;
+    }
+  }
+}

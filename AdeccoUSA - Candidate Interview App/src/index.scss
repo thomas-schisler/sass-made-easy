@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+// breakpoints 
+$sm: 37.5rem;
+$md: 50rem;
+$lg: 62.5rem; 
+$xl: 75rem;
+
+:root {
+  --color-primary: hsl(0, 0%, 0%);
+  --color-secondary: hsl(0, 0%, 30%);
+  --color-accent: hsl(0, 0%, 60%);
+
+  --hue: 190;
+  --saturation: 90%; 
+  --lightness: 20%;
+
+  --spacing: 0.5rem;
+
+  --family: 'Nunito Sans', sans-serif;
+  --size: 1em;
+  --line-height: 1.2rem;
+}
+
+
+
+* {
+  box-sizing: border-box;
+  font-smooth: antialiased;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-family: var(--family);
+  font-size: var(--size);
+  line-height: var(--line-height);
+}
+
+.main {
+  padding: var(--spacing);
+  margin: var(--spacing) auto;
+  width: 100%; 
+  max-width: 1000px;
+}
+
+.message {
+  font-size: 1rem;
+  &.error {
+    color: red;
+  }
+  &.loading, 
+  &.submitted {
+    color: inherit;
+  }
+}

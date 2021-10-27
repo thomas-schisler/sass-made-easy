@@ -1,0 +1,58 @@
+@use '../abstracts/' as *;
+
+.colors {
+
+  &-brand, 
+  &-neutral {
+    @include list-reset;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    > li {
+      flex: 1 0 auto;
+      width: auto;
+      height: auto;
+      min-height: 50px;
+      text-align: center;
+      display: grid;
+      place-items: center;
+    }
+  }
+
+  &-brand {
+    @mixin colors($color) {
+      background: $color;
+    }
+    li {
+      @each $color-key in $colors-brand {
+        $i: index($colors-brand, $color-key);
+        &:nth-of-type(#{$i}) {
+          @include colors(nth($colors-brand, $i));
+          @include text-contrast(nth($colors-brand, $i));
+          &:after {
+            content: '#{nth($colors-brand, $i)}';
+          }
+        }
+      }
+    }
+  }
+  &-neutral {
+    @mixin colors($color) {
+      background: $color;
+    }
+    li {
+      @each $color-key in $colors-neutral {
+        $i: index($colors-neutral, $color-key);
+        &:nth-of-type(#{$i}) {
+          @include colors(nth($colors-neutral, $i));
+          @include text-contrast(nth($colors-neutral, $i));
+          &:after {
+            content: '#{nth($colors-neutral, $i)}';
+          }
+        }
+      }
+    }
+  }
+
+}

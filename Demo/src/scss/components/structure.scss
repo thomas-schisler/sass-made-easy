@@ -1,0 +1,67 @@
+@use '../abstracts/' as *;
+
+* {
+  box-sizing: border-box;
+  &:before, 
+  &:after {
+    box-sizing: border-box;
+    pointer-events: none;
+  }
+}
+
+:root {}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0; 
+  padding: 0;
+  background: $n100;
+  font-size: $font-size;
+  color: $n20;
+  display: flex;
+  flex-flow: column nowrap;
+
+  @include bp($bp-md) {
+    flex-flow: row wrap;
+  }
+
+  > header {
+    background: $b60;
+    @include bp($bp-md) {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+  }
+  > main  {
+    border: 5px solid red;
+    @include bp($bp-md) {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+    > section {
+      // @include bp($bp-md) {
+      //   flex: 0 1 auto;
+      //   width: 70%;
+      // }
+      border: 2px solid lime; 
+    }
+    > aside {
+      @include bp($bp-md) {
+        flex: 0 1 auto;
+        width: 30%;
+      }
+    }
+  }
+
+  > footer {
+    background: $b20;
+    @include bp($bp-md) {
+      flex: 1 0 auto;
+      width: 100%;
+    }
+  }
+}
+
