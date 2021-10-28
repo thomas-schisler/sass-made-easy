@@ -3,27 +3,28 @@ import { useLocation } from "react-router-dom";
 import './Form.css';
 import moment from "moment";
 import axios from "axios";
-// import FormTime from "./FormTime";
+import Data from "../../data/data.json";
 
 const Form = () => {
   // ***********************************************
   // get job id from query string 
   // ***********************************************
   const query = new URLSearchParams(useLocation().search); 
-  const jobID = query.get('id'); // use ID from URL  
-  const candidateID = query.get('candidate'); // use candidate from URL  
+  const jobId = query.get('id'); // use ID from URL  
+  const candidateId = query.get('candidate'); // use candidate from URL  
   const startTime = '';
 
   // ***********************************************
-  // match ID from URL to JobID from JSON
+  // match ID from URL to JobId from JSON
   // ***********************************************
-  const jobsURL = `http://localhost:8000/jobs/${jobID}`; // local testing 
-  // const jobsURL = `https://opensheet.vercel.app/1DwnduehbWMZvrHv7gP0LbicKQrKYn9niPHGYRiZvpyE/DATA/${jobID}`; // uat testing 
+  const jobsURL = `http://localhost:8000/jobs/${jobId}`; // local testing 
+  // const jobsURL = `https://opensheet.vercel.app/1DwnduehbWMZvrHv7gP0LbicKQrKYn9niPHGYRiZvpyE/DATA/${jobId}`; // uat testing 
 
   // ***********************************************
   // create appointment 
   // ***********************************************
-  const appointmentURL = `https://bhgatewayqa.azurewebsites.net/ca/ags/d00d7224567448908769a002fb2c7a55/createAppointment`
+  const appointmentURL = `http://localhost:1337/bhgatewayqa.azurewebsites.net/ca/ags/d00d7224567448908769a002fb2c7a55/createAppointment/`;
+  // const appointmentURL = `http://jsonplaceholder.typicode.com/todos`;
 
   // ***********************************************
   // set state
@@ -31,6 +32,7 @@ const Form = () => {
   const [info,setInfo] = useState([])
   const [isLoading,setIsLoading] = useState(true)
   const [isError,setIsError] = useState(false)
+  const [isSubmitted,setIsSubmitted] = useState(false)
 
   const [jobAddress1,setJobAddress1] = useState([])
   const [jobAddress2,setJobAddress2] = useState([])
@@ -45,16 +47,15 @@ const Form = () => {
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [communicationMethod, setCommunicationMethod] = useState('');
+  const [location, setLocation] = useState('');
 
   // ***********************************************
   // time slots
   // ***********************************************
   const duration = 30; // units set below  
   const units = 'm'; // [h]ours, [m]inutes, [s]econds
-  // start time minus duration
-  const start = moment( jobStartTime, ["h:mmA z"]).subtract(duration, units); 
-  // end time minus duration * 2
-  const end = moment(jobEndTime, ["h:mmA z"]).subtract((duration*2), units); 
+  const start = moment( jobStartTime, ["h:mmA z"]).subtract(duration, units); // start time minus duration
+  const end = moment(jobEndTime, ["h:mmA z"]).subtract((duration*2), units); // end time minus duration * 2
   const timeSlots = [];
   while (start.isSameOrBefore(end)) {
     const time = start.add(duration, units).format('h:mm A');
@@ -64,7 +65,11 @@ const Form = () => {
   useEffect(() => {
     const fetchJSON = async () => {
       try {
-        const response = await axios.get(jobsURL)
+        // const response = await axios.get(jobsURL)
+        const response = await axios({
+          method: 'GET',
+          url: jobsURL, 
+        })
         setInfo(response.data)
         setJobAddress1(response.data.address1);
         setJobAddress2(response.data.address2);
@@ -100,12 +105,25 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();    
     const startTime = moment( date +' '+ time).unix();
-    const submission = { candidateID, jobID, startTime, communicationMethod };
+    
+    // dino's example 
+    // const submission = {
+    //   "candidateId": "c5cca566-cc49-4975-b2a1-b5f2e8777dfa",
+    //   "jobId": "CA_EN_1_026520_1666403",
+    //   "startTime": 1631908812,
+    //   "communicationMethod": "Phone",
+    //   "location": "Starbucks"
+    // };
+    
+    // pulled form submission 
+    const submission = { candidateId, jobId, startTime, communicationMethod, location };
     // console.log(submission);
-    alert(JSON.stringify(submission));
+    // alert(JSON.stringify(submission));
     try {
       const response = await axios.post(appointmentURL, submission);
-      const allAppointments = [...submission, response.data];
+      console.log(submission);
+      console.log(response);
+      // setIsSubmitted(true)
     } catch (error) {
       console.log(`Error: ${error.message}`);
     }
@@ -120,12 +138,15 @@ const Form = () => {
       {/* loading message */}
       { isLoading && <div className="message loading">Loading...</div> }
 
+      {/* submitted message */}
+      { isSubmitted && <div className="message submitted">Thanks for your submission. You'll hear from a member of our team shortly.</div>  }
+
       {/* done loading without errors*/}
-      { !isLoading && !isError &&
+      { !isLoading && !isError && !isSubmitted && 
       <section className="job-info">
         <aside className="job-form">
-          {/* JobID */}
-          <p><strong>JobID</strong>:<br /> {jobID}</p>
+          {/* JobId */}
+          <p><strong>JobId</strong>:<br /> {jobId}</p>
 
           {/* Start & End Time */}
           <p><strong>Available Times</strong>:<br /> {jobStartTime} - {jobEndTime}</p>
@@ -160,9 +181,14 @@ const Form = () => {
               <option value="Virtual">Virtual</option>
             </select>
           </div>
+          
+          <div className="form-field location-field">
+            <label htmlFor="chooseLocation">Location</label>
+            <input type="text" id="chooseLocation" name="chooseLocation" value={location} onChange={(e) => setLocation(e.target.value)} required />
+          </div>
 
-          <input type="hidden" id="candidateID" value={candidateID} />
-          <input type="hidden" id="jobId" value={jobID} />
+          <input type="hidden" id="candidateId" value={candidateId} />
+          <input type="hidden" id="jobId" value={jobId} />
           <input type="hidden" id="startTime" value={startTime} />
           
 

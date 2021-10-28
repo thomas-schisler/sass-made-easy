@@ -1,0 +1,8 @@
+header {
+  color: var(--color-primary);
+}
+
+header h1 {
+  --size: 2rem;
+  font-size: var(--size);
+}

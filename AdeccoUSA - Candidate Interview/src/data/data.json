@@ -19,6 +19,17 @@
      "postal": 32256,
      "availableStartTime": "9:00AM EST",
      "availableEndTime": "12:00PM EST"
+   },
+   {
+     "id": "21234",
+     "address1": "3104 Dubois Ave",
+     "address2": "",
+     "city": "Baltimore",
+     "state": "MD",
+     "postal": 21234,
+     "availableStartTime": "11:00AM EST",
+     "availableEndTime": "4:00PM EST"
    }
   ]
+
 }

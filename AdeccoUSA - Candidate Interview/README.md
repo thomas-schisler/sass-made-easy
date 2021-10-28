@@ -2,13 +2,28 @@
 
 ### VS Code 
 **Plugins**
-* Watch SASS
+* Watch SASS <https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass>
 
-### Command Prompt
-json-server <https://www.npmjs.com/package/json-server>
+### Terminal in VS Code
+**Steps**
+1. Open terminal 
+2. Type `corsproxy` then `ctrl+c` to start **corsproxy**
+3. Open new terminal instance `ctrl+shift+5`
+4. Type `json-server --watch "C:\_repos\azure\AdeccoUSA - Candidate Interview App\data\interviewConfig.json" --port 8000`
+5. Open new terminal instance `ctrl+shift+5`
+⋅⋅1. Type `yarn install` to install dependancies
+⋅⋅2. Type `yarn start` to start `localhost`
+
+**corsproxy** <https://www.npmjs.com/package/corsproxy>
 ```
-json-server --watch "C:\_repos\azure\AdeccoUSA - Candidate Interview\data\interviewConfig.json" --port 8000
-json-server --watch "LOCAL_PATH_TO_JSON_FOR_TESTING"  --port 8000
+npm install -g corsproxy 
+corsproxy
+```
+
+**json-server** <https://www.npmjs.com/package/json-server>
+```
+json-server --watch "C:\_repos\azure\AdeccoUSA - Candidate Interview App\data\interviewConfig.json" --port 8000
+json-server --watch "LOCAL_PATH_TO_JSON_FOR_TESTING"  --port 8000 (example)
 ```
 
 ## Available Scripts
