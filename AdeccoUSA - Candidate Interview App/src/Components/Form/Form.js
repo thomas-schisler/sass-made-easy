@@ -23,7 +23,8 @@ const Form = () => {
   // ***********************************************
   // create appointment 
   // ***********************************************
-  const appointmentURL = `http://localhost:1337/bhgatewayqa.azurewebsites.net/ca/ags/d00d7224567448908769a002fb2c7a55/createAppointment`
+  // const appointmentURL = `http://localhost:1337/bhgatewayqa.azurewebsites.net/ca/ags/d00d7224567448908769a002fb2c7a55/createAppointment/`;
+  const appointmentURL = `http://jsonplaceholder.typicode.com/todos`;
 
   // ***********************************************
   // set state
@@ -113,15 +114,16 @@ const Form = () => {
     //   "communicationMethod": "Phone",
     //   "location": "Starbucks"
     // };
+    
     // pulled form submission 
     const submission = { candidateId, jobId, startTime, communicationMethod, location };
     // console.log(submission);
     // alert(JSON.stringify(submission));
     try {
       const response = await axios.post(appointmentURL, submission);
-      // console.log(submission);
+      console.log(submission);
       console.log(response);
-      setIsSubmitted(true)
+      // setIsSubmitted(true)
     } catch (error) {
       console.log(`Error: ${error.message}`);
     }

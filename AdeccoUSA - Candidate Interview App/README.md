@@ -5,15 +5,21 @@
 * Watch SASS
 
 ### Command Prompt
-json-server <https://www.npmjs.com/package/json-server>
-```
-json-server --watch "C:\_repos\azure\AdeccoUSA - Candidate Interview\data\interviewConfig.json" --port 8000
-json-server --watch "LOCAL_PATH_TO_JSON_FOR_TESTING"  --port 8000
-```
-corsproxy <https://www.npmjs.com/package/corsproxy>
+** Steps **
+1. `corsproxy`
+2. `json-server --watch "C:\_repos\azure\AdeccoUSA - Candidate Interview App\data\interviewConfig.json" --port 8000`
+3. In a new instance `yarn start`
+
+** corsproxy ** <https://www.npmjs.com/package/corsproxy>
 ```
 npm install -g corsproxy 
 corsproxy
+```
+
+** json-server ** <https://www.npmjs.com/package/json-server>
+```
+json-server --watch "C:\_repos\azure\AdeccoUSA - Candidate Interview App\data\interviewConfig.json" --port 8000
+json-server --watch "LOCAL_PATH_TO_JSON_FOR_TESTING"  --port 8000
 ```
 
 ## Available Scripts
